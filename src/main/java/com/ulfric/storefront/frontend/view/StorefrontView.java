@@ -1,5 +1,8 @@
-package com.ulfric.storefront;
+package com.ulfric.storefront.frontend.view;
 
+import com.ulfric.storefront.frontend.component.Body;
+import com.ulfric.storefront.frontend.component.Header;
+import com.ulfric.storefront.frontend.component.NavBar;
 import com.ulfric.storefront.vaadin.margin.MarginTopEm;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.router.Route;

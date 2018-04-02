@@ -1,4 +1,4 @@
-package com.ulfric.storefront;
+package com.ulfric.storefront.frontend.component;
 
 import com.ulfric.storefront.model.Webstore;
 import com.vaadin.flow.component.html.H3;

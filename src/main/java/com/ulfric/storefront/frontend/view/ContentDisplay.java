@@ -1,5 +1,6 @@
-package com.ulfric.storefront;
+package com.ulfric.storefront.frontend.view;
 
+import com.ulfric.storefront.frontend.component.NavBar;
 import com.ulfric.storefront.vaadin.container.Container;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Composite;

@@ -1,4 +1,4 @@
-package com.ulfric.storefront;
+package com.ulfric.storefront.frontend.component;
 
 import com.ulfric.storefront.vaadin.button.ComplementaryButton;
 import com.ulfric.storefront.vaadin.button.FriendlyButton;

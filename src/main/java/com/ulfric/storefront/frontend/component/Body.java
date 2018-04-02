@@ -1,7 +1,9 @@
-package com.ulfric.storefront;
+package com.ulfric.storefront.frontend.component;
 
 import org.springframework.util.CollectionUtils;
 
+import com.ulfric.storefront.frontend.view.ContentDisplay;
+import com.ulfric.storefront.frontend.view.HomeView;
 import com.ulfric.storefront.model.Webstore;
 import com.ulfric.storefront.model.WidgetDescriptor;
 import com.ulfric.storefront.vaadin.container.Container;

@@ -1,4 +1,4 @@
-package com.ulfric.storefront;
+package com.ulfric.storefront.frontend.view;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
