@@ -16,33 +16,33 @@ public class HeaderButtons extends HorizontalLayout {
 
 	public HeaderButtons() {
 		setMargin(false);
-    	setPadding(false);
-    	setJustifyContentMode(JustifyContentMode.END);
-    	setAlignItems(Alignment.END);
+		setPadding(false);
+		setJustifyContentMode(JustifyContentMode.END);
+		setAlignItems(Alignment.END);
 
-    	Button login = new ComplementaryButton();
-    	login.setText("Login");
-    	login.getElement().getThemeList().add("contrast");
-    	login.getElement().getThemeList().add("tertiary");
+		Button login = new ComplementaryButton();
+		login.setText("Login");
+		login.getElement().getThemeList().add("contrast");
+		login.getElement().getThemeList().add("tertiary");
 
-    	login.addClickListener(click -> {
-    		TextField username = new TextField();
-    		username.setPlaceholder("Username");
-    		Button go = new Button(new Icon(VaadinIcons.CHEVRON_RIGHT));
-    		go.getElement().getThemeList().add("small");
-    		go.getElement().getThemeList().add("contrast");
-    		go.getElement().getThemeList().add("tertiary");
-    		go.getStyle().set("cursor", "pointer");
-    		go.addClickListener(click2 -> replace(username, login));
-    		username.setSuffixComponent(go);
-    		replace(login, username);
-    	});
+		login.addClickListener(click -> {
+			TextField username = new TextField();
+			username.setPlaceholder("Username");
+			Button go = new Button(new Icon(VaadinIcons.CHEVRON_RIGHT));
+			go.getElement().getThemeList().add("small");
+			go.getElement().getThemeList().add("contrast");
+			go.getElement().getThemeList().add("tertiary");
+			go.getStyle().set("cursor", "pointer");
+			go.addClickListener(click2 -> replace(username, login));
+			username.setSuffixComponent(go);
+			replace(login, username);
+		});
 
-    	Button checkout = new FriendlyButton();
-    	checkout.setWidth("100%");
-    	checkout.setText("Checkout");
+		Button checkout = new FriendlyButton();
+		checkout.setWidth("100%");
+		checkout.setText("Checkout");
 
-    	add(login, checkout);
+		add(login, checkout);
 	}
 
 }

@@ -8,14 +8,14 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 @SpringBootApplication
 public class StorefrontServletInitializer extends SpringBootServletInitializer {
 
-    public static void main(String[] args) {
-        SpringApplication.run(StorefrontServletInitializer.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(StorefrontServletInitializer.class, args);
+	}
 
-    @Override
-    protected SpringApplicationBuilder configure(
-            SpringApplicationBuilder builder) {
-        return builder.sources(StorefrontServletInitializer.class);
-    }
+	@Override
+	protected SpringApplicationBuilder configure(
+			SpringApplicationBuilder builder) {
+		return builder.sources(StorefrontServletInitializer.class);
+	}
 
 }

@@ -12,8 +12,8 @@ import com.vaadin.flow.theme.lumo.Lumo;
 @Theme(Lumo.class)
 public class StorefrontView extends MainLayout implements RouterLayout {
 
-    public StorefrontView(Header header, NavBar navBar, Body body) {
-    	getContent().add(new MarginTopEm(2), header, new MarginTopEm(3), navBar, new MarginTopEm(2), body);
-    }
+	public StorefrontView(Header header, NavBar navBar, Body body) {
+		getContent().add(new MarginTopEm(2), header, new MarginTopEm(3), navBar, new MarginTopEm(2), body);
+	}
 
 }

@@ -11,7 +11,7 @@ import com.vaadin.flow.spring.annotation.UIScope;
 public class Header extends Composite<Row> {
 
 	public Header(Webstore webstore, Title title, HeaderButtons headerButtons) {
-    	getContent().add(title, headerButtons);
+		getContent().add(title, headerButtons);
 	}
 
 }
