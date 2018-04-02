@@ -16,6 +16,8 @@
 *.php text
 
 *.jar binary
+*.war binary
+*.ear binary
 *.exe binary
 *.zip binary
 *.rar binary
