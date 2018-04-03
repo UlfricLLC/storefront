@@ -3,12 +3,16 @@ package com.ulfric.storefront.model;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class Item extends Named {
+public class Item extends Described {
+
+	public static boolean isPositive(BigDecimal price) { // TODO move
+		return price != null && price.compareTo(BigDecimal.ZERO) > 0;
+	}
 
 	private List<Category> categories;
 	private BigDecimal price;
 	private List<String> commands;
-	private String description;
+	private Boolean changeableQuantity;
 
 	public List<Category> getCategories() {
 		return categories;
@@ -34,12 +38,12 @@ public class Item extends Named {
 		this.commands = commands;
 	}
 
-	public String getDescription() {
-		return description;
+	public Boolean getChangeableQuantity() {
+		return changeableQuantity;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setChangeableQuantity(Boolean changeableQuantity) {
+		this.changeableQuantity = changeableQuantity;
 	}
 
 }

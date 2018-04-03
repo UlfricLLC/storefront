@@ -2,9 +2,9 @@ package com.ulfric.storefront.vaadin.button;
 
 import com.vaadin.flow.dom.ThemeList;
 
-public class ContrastButton extends PrimaryButton {
+public class SecondaryContrastButton extends SecondaryButton {
 
-	public ContrastButton() {
+	public SecondaryContrastButton() {
 		ThemeList themes = getElement().getThemeList();
 		themes.add("contrast");
 	}

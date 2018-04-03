@@ -1,7 +1,7 @@
 package com.ulfric.storefront.frontend.component;
 
 import com.ulfric.storefront.vaadin.button.ComplementaryButton;
-import com.ulfric.storefront.vaadin.button.FriendlyButton;
+import com.ulfric.storefront.vaadin.button.PrimaryButton;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcons;
@@ -32,13 +32,13 @@ public class HeaderButtons extends HorizontalLayout {
 			go.getElement().getThemeList().add("small");
 			go.getElement().getThemeList().add("contrast");
 			go.getElement().getThemeList().add("tertiary");
-			go.getStyle().set("cursor", "pointer");
+			go.addClassName("pointer");
 			go.addClickListener(click2 -> replace(username, login));
 			username.setSuffixComponent(go);
 			replace(login, username);
 		});
 
-		Button checkout = new FriendlyButton();
+		Button checkout = new PrimaryButton();
 		checkout.setWidth("100%");
 		checkout.setText("Checkout");
 

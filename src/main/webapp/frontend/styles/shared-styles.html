@@ -1,51 +1,81 @@
+<dom-module id="storefront-styles">
+	<template>
+		<style>
+			.main-layout {
+				width: 100%;
+				max-width: 106vh;
+				min-height: 100vh;
+				margin: 0 auto;
+			}
+	
+			.courier {
+				font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+				text-transform: lowercase;
+			}
+	
+			.pointer {
+				cursor: pointer;
+			}
+	
+			.big-tab {
+				font-size: 1.35rem;
+				font-weight: 600;
+			}
+	
+			.contrast-tab {
+				color: var(--lumo-contrast);
+			}
+	
+			.contrast-tab:before {
+				background-color: var(--lumo-contrast);
+			}
+	
+			.contrast-tab:after {
+				transition-property: none;
+			}
+	
+			.container {
+				padding: 0 1em 1em 1em;
+				border-color: var(--lumo-contrast-10pct);
+				border-style: solid;
+				border-width: 1px;
+				border-radius: var(--lumo-border-radius);
+				background-color: var(--lumo-contrast-5pct);
+				line-height: var(--lumo-line-height-s);
+			}
+	
+			.container-title {
+				box-shadow: inset 0 -1px 0 0 var(--lumo-contrast-10pct);
+				margin-top: 0.85em;
+			}
+	
+			.price-label {
+				font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+			}
+	
+			.price-discounted-label {
+				color: red;
+				text-decoration: line-through;
+			}
+
+			[part="overlay"] {
+				outline: none;
+			}
+
+			.line {
+				border-top: solid 2px var(--lumo-contrast-30pct);
+				margin-top: 0.7em;
+			}
+		</style>
+	</template>
+</dom-module>
+
 <custom-style>
-	<style>
-		.main-layout {
-			width: 100%;
-			max-width: 106vh;
-			min-height: 100vh;
-			margin: 0 auto;
-		}
-
-		.courier {
-			font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
-			text-transform: lowercase;
-		}
-
-		.pointer {
-			cursor: pointer;
-		}
-
-		.big-tab {
-			font-size: 1.35rem;
-			font-weight: 600;
-		}
-
-		.contrast-tab {
-			color: var(--lumo-contrast);
-		}
-
-		.contrast-tab:before {
-			background-color: var(--lumo-contrast);
-		}
-
-		.contrast-tab:after {
-			transition-property: none;
-		}
-
-		.container {
-			padding: 0 1em 1em 1em;
-			border-color: var(--lumo-contrast-10pct);
-			border-style: solid;
-			border-width: 1px;
-			border-radius: var(--lumo-border-radius);
-			background-color: var(--lumo-contrast-5pct);
-			line-height: var(--lumo-line-height-s);
-		}
-
-		.container-title {
-			box-shadow: inset 0 -1px 0 0 var(--lumo-contrast-10pct);
-			margin-top: 0.85em;
-		}
-	</style>
+	<style include="storefront-styles"></style>
 </custom-style>
+
+<dom-module id="storefront-dialog" theme-for="vaadin-dialog-overlay">
+	<template>
+		<style include="storefront-styles"></style>
+	</template>
+</dom-module>

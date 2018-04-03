@@ -4,6 +4,7 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.util.StringUtils;
 
+import com.ulfric.storefront.vaadin.text.CourierTitle;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.html.Div;
@@ -18,8 +19,7 @@ public class Container extends Composite<Div> {
 	private final H3 title;
 
 	private static H3 title(String string) {
-		H3 title = new H3(StringUtils.isEmpty(string) ? null : string);
-		title.addClassName("courier");
+		CourierTitle title = new CourierTitle(StringUtils.isEmpty(string) ? null : string);
 		title.addClassName("container-title");
 		return title;
 	}

@@ -2,11 +2,11 @@ package com.ulfric.storefront.vaadin.button;
 
 import com.vaadin.flow.dom.ThemeList;
 
-public class ContrastButton extends PrimaryButton {
+public class PrimaryButton extends CourierButton {
 
-	public ContrastButton() {
+	public PrimaryButton() {
 		ThemeList themes = getElement().getThemeList();
-		themes.add("contrast");
+		themes.add("primary");
 	}
 
 }
