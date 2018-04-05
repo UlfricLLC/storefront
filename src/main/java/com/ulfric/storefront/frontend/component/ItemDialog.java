@@ -15,6 +15,7 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcons;
+import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
@@ -31,17 +32,21 @@ public class ItemDialog extends Composite<StorefrontDialog> {
 		titleRow.add(new CourierTitle(item.getName()));
 		Button button = new TertiaryContrastButton();
 		button.setIcon(new Icon(VaadinIcons.CLOSE)); // TODO properly align
+		button.getElement().getThemeList().add("small");
+		titleRow.setVerticalComponentAlignment(Alignment.BASELINE, button);
 		titleRow.add(button);
 		layout.add(titleRow);
-		layout.setFlexGrow(1, titleRow);
+		//layout.setFlexGrow(1, titleRow);
 
 		Div description = Described.render(item.getDescription());
+		description.setSizeFull();
+		description.setHeight("400%");
 		description.getStyle().set("overflow", "auto");
 		description.getStyle().set("border-style", "solid");
-		description.getStyle().set("border-color", "var(--lumo-contrast-5pct)");
+		description.getStyle().set("border-color", "var(--lumo-contrast-10pct)");
 		description.getStyle().set("border-width", "2px 0");
 		layout.add(description);
-		layout.setFlexGrow(7, description);
+		//layout.setFlexGrow(7, description);
 
 		Div buttons = new Div();
 		buttons.setSizeFull();
@@ -90,7 +95,7 @@ public class ItemDialog extends Composite<StorefrontDialog> {
 		buttons.add(giftUsername);
 
 		layout.add(buttons);
-		layout.setFlexGrow(3, buttons);
+		//layout.setFlexGrow(3, buttons);
 
 		getContent().add(layout);
 	}
