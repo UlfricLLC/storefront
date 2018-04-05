@@ -10,7 +10,7 @@ public class Webstore extends Named {
 	private List<Item> items = new ArrayList<>();
 	private List<Sale> sales = new ArrayList<>();
 	private Map<String, PriceOffset> giftcards = new HashMap<>();
-	private List<WidgetDescriptor> widgets = new ArrayList<>();
+	private List<Element> widgets = new ArrayList<>();
 	private String homeBody = "This webstore does not yet have a homeBody set";
 
 	public List<Item> getItems() {
@@ -29,7 +29,7 @@ public class Webstore extends Named {
 		this.sales = sales;
 	}
 
-	public List<WidgetDescriptor> getWidgets() {
+	public List<Element> getWidgets() {
 		return widgets;
 	}
 
@@ -41,7 +41,7 @@ public class Webstore extends Named {
 		this.giftcards = giftcards;
 	}
 
-	public void setWidgets(List<WidgetDescriptor> widgets) {
+	public void setWidgets(List<Element> widgets) {
 		this.widgets = widgets;
 	}
 

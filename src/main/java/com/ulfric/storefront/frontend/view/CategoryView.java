@@ -14,6 +14,7 @@ import org.springframework.util.StringUtils;
 
 import com.ulfric.storefront.frontend.component.ItemDialog;
 import com.ulfric.storefront.model.Category;
+import com.ulfric.storefront.model.Described;
 import com.ulfric.storefront.model.Item;
 import com.ulfric.storefront.model.PriceOffset;
 import com.ulfric.storefront.model.Sale;
@@ -22,7 +23,6 @@ import com.ulfric.storefront.vaadin.button.ContrastButton;
 import com.ulfric.storefront.vaadin.margin.MarginTopEm;
 import com.ulfric.storefront.vaadin.text.ItemNameText;
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.Grid.SelectionMode;
 import com.vaadin.flow.component.html.Div;
@@ -56,7 +56,7 @@ public class CategoryView extends View implements HasUrlParameter<String> {
 		Div page = new Div();
 
 		if (!StringUtils.isEmpty(category.getDescription())) {
-			page.add(new Text(category.getDescription()));
+			page.add(Described.render(category.getDescription()));
 			page.add(new MarginTopEm(1));
 		}
 

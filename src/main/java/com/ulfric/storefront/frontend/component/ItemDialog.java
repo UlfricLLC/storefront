@@ -1,21 +1,20 @@
 package com.ulfric.storefront.frontend.component;
 
-import java.util.UUID;
-
+import com.ulfric.storefront.model.Described;
 import com.ulfric.storefront.model.Item;
 import com.ulfric.storefront.vaadin.button.ContrastButton;
 import com.ulfric.storefront.vaadin.button.SecondaryContrastButton;
+import com.ulfric.storefront.vaadin.button.TertiaryContrastButton;
 import com.ulfric.storefront.vaadin.dialog.DialogLayout;
 import com.ulfric.storefront.vaadin.dialog.StorefrontDialog;
 import com.ulfric.storefront.vaadin.margin.Line;
+import com.ulfric.storefront.vaadin.text.CourierTitle;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcons;
-import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
-import com.vaadin.flow.component.orderedlayout.FlexComponent.JustifyContentMode;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
@@ -25,15 +24,24 @@ public class ItemDialog extends Composite<StorefrontDialog> {
 	public ItemDialog(Item item) {
 		VerticalLayout layout = new DialogLayout();
 
-		//layout.add(new CourierTitle(item.getName()));
+		HorizontalLayout titleRow = new HorizontalLayout();
+		titleRow.setWidth("100%");
+		titleRow.getStyle().set("flex-direction", "row");
+		titleRow.getStyle().set("flex-wrap", "wrap-reverse");
+		titleRow.add(new CourierTitle(item.getName()));
+		Button button = new TertiaryContrastButton();
+		button.setIcon(new Icon(VaadinIcons.CLOSE)); // TODO properly align
+		titleRow.add(button);
+		layout.add(titleRow);
+		layout.setFlexGrow(1, titleRow);
 
-		Div sublayout = new Div();
-		sublayout.setSizeFull();
-		sublayout.getStyle().set("max-height", "60vh");
-		sublayout.getStyle().set("maxHeight", "60vh");
-		sublayout.getStyle().set("overflow", "auto");
-		sublayout.add(new Label(v()));
-		//layout.add(sublayout);
+		Div description = Described.render(item.getDescription());
+		description.getStyle().set("overflow", "auto");
+		description.getStyle().set("border-style", "solid");
+		description.getStyle().set("border-color", "var(--lumo-contrast-5pct)");
+		description.getStyle().set("border-width", "2px 0");
+		layout.add(description);
+		layout.setFlexGrow(7, description);
 
 		Div buttons = new Div();
 		buttons.setSizeFull();
@@ -42,8 +50,6 @@ public class ItemDialog extends Composite<StorefrontDialog> {
 		purchaseRow.setWidth("100%");
 		purchaseRow.getStyle().set("flex-direction", "row");
 		purchaseRow.getStyle().set("flex-wrap", "wrap-reverse");
-		purchaseRow.setJustifyContentMode(JustifyContentMode.START);
-		purchaseRow.setAlignItems(Alignment.START);
 
 		Button addToCart = new SecondaryContrastButton();
 		addToCart.setText("Add to cart");
@@ -84,17 +90,9 @@ public class ItemDialog extends Composite<StorefrontDialog> {
 		buttons.add(giftUsername);
 
 		layout.add(buttons);
+		layout.setFlexGrow(3, buttons);
 
 		getContent().add(layout);
-	}
-
-	private String v() {
-		StringBuilder s = new StringBuilder();
-		for (int x = 0; x < 1000; x++) {
-			s.append(UUID.randomUUID().toString().replace('-', ' '));
-			s.append(' ');
-		}
-		return s.toString();
 	}
 
 	public void open() {

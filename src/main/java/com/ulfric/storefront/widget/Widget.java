@@ -2,26 +2,24 @@ package com.ulfric.storefront.widget;
 
 import java.util.Objects;
 
-import com.ulfric.storefront.model.WidgetDescriptor;
+import com.ulfric.storefront.model.Described;
+import com.ulfric.storefront.model.Element;
 import com.ulfric.storefront.vaadin.container.Container;
-import com.vaadin.flow.component.Component;
 
-public abstract class Widget {
+public class Widget {
 
-	protected final WidgetDescriptor descriptor;
+	protected final Element element;
 
-	public Widget(WidgetDescriptor descriptor) {
-		Objects.requireNonNull(descriptor, "descriptor");
+	public Widget(Element element) {
+		Objects.requireNonNull(element, "element");
 
-		this.descriptor = descriptor;
+		this.element = element;
 	}
 
 	public final Container render() {
-		Container container = new Container(descriptor.getName(), contents());
+		Container container = new Container(element.getName(), Described.render(element));
 
 		return container;
 	}
-
-	protected abstract Component contents();
 
 }
