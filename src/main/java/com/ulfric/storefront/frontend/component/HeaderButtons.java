@@ -21,12 +21,12 @@ public class HeaderButtons extends HorizontalLayout {
 		setAlignItems(Alignment.END);
 
 		Button login = new ComplementaryButton();
-		login.setText("Login");
+		login.setText("Login"); // TODO record clicks login button rather than going through checkout flow naturally
 		login.getElement().getThemeList().add("contrast");
 		login.getElement().getThemeList().add("tertiary");
 
 		login.addClickListener(click -> {
-			TextField username = new TextField();
+			TextField username = new TextField(); // TODO record focus on this field
 			username.setPlaceholder("Username");
 			Button go = new Button(new Icon(VaadinIcons.CHEVRON_RIGHT));
 			go.getElement().getThemeList().add("small");
@@ -34,7 +34,7 @@ public class HeaderButtons extends HorizontalLayout {
 			go.getElement().getThemeList().add("tertiary");
 			go.addClassName("pointer");
 			go.addClickListener(click2 -> replace(username, login));
-			username.setSuffixComponent(go);
+			username.setSuffixComponent(go); // TODO record login, and whether they entered a valid username
 			replace(login, username);
 		});
 

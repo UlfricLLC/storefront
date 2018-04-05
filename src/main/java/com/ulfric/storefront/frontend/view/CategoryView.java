@@ -15,10 +15,14 @@ import org.springframework.util.StringUtils;
 import com.ulfric.storefront.frontend.component.ItemDialog;
 import com.ulfric.storefront.model.Category;
 import com.ulfric.storefront.model.Described;
+import com.ulfric.storefront.model.Event;
 import com.ulfric.storefront.model.Item;
 import com.ulfric.storefront.model.PriceOffset;
 import com.ulfric.storefront.model.Sale;
+import com.ulfric.storefront.model.Session;
 import com.ulfric.storefront.model.Webstore;
+import com.ulfric.storefront.repositories.SessionRepository;
+import com.ulfric.storefront.services.AnalyticsService;
 import com.ulfric.storefront.vaadin.button.ContrastButton;
 import com.ulfric.storefront.vaadin.margin.MarginTopEm;
 import com.ulfric.storefront.vaadin.text.ItemNameText;
@@ -40,10 +44,17 @@ import com.vaadin.flow.spring.annotation.SpringComponent;
 public class CategoryView extends View implements HasUrlParameter<String> {
 
 	private final Webstore webstore;
+	private final Session session;
+	private final SessionRepository sessions;
+	private final AnalyticsService analytics;
 	private final ContentDisplay display;
 
-	public CategoryView(Webstore webstore, ContentDisplay display) {
+	public CategoryView(Webstore webstore, Session session, SessionRepository sessions,
+			AnalyticsService analytics, ContentDisplay display) {
 		this.webstore = webstore;
+		this.session = session;
+		this.sessions = sessions;
+		this.analytics = analytics;
 		this.display = display;
 	}
 
@@ -51,7 +62,14 @@ public class CategoryView extends View implements HasUrlParameter<String> {
 	public void setParameter(BeforeEvent event, String parameter) {
 		display.getNavBar().select(parameter);
 		Category category = findCategory(parameter);
-		display.setTitle(category == null ? "Packages" : category.getName());
+		String title = category == null ? "Packages" : category.getName();
+		display.setTitle(title);
+
+		Event analyticsEvent = new Event();
+		analyticsEvent.setName("visit_category");
+		analyticsEvent.getDetails().put("title", title);
+		analyticsEvent.getDetails().put("parameter", parameter);
+		analytics.record(session.getAnalyticsId(), analyticsEvent);
 
 		Div page = new Div();
 
@@ -68,7 +86,7 @@ public class CategoryView extends View implements HasUrlParameter<String> {
 		listing.addColumn(new Renderer<>(ContrastButton::new, (button, item) -> {
 			button.setWidth("100%");
 			button.setText("More info");
-			button.addClickListener(click -> new ItemDialog(item).open());
+			button.addClickListener(click -> new ItemDialog(title, item, session, sessions, analytics).open());
 		}));
 		listing.setSelectionMode(SelectionMode.NONE);
 		page.add(listing);

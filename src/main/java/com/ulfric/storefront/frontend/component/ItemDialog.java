@@ -1,7 +1,11 @@
 package com.ulfric.storefront.frontend.component;
 
 import com.ulfric.storefront.model.Described;
+import com.ulfric.storefront.model.Event;
 import com.ulfric.storefront.model.Item;
+import com.ulfric.storefront.model.Session;
+import com.ulfric.storefront.repositories.SessionRepository;
+import com.ulfric.storefront.services.AnalyticsService;
 import com.ulfric.storefront.vaadin.button.ContrastButton;
 import com.ulfric.storefront.vaadin.button.SecondaryContrastButton;
 import com.ulfric.storefront.vaadin.button.TertiaryContrastButton;
@@ -22,7 +26,14 @@ import com.vaadin.flow.component.textfield.TextField;
 
 public class ItemDialog extends Composite<StorefrontDialog> {
 
-	public ItemDialog(Item item) {
+	public ItemDialog(String category, Item item, Session session, SessionRepository sessions, AnalyticsService analytics) {
+		Event event = new Event();
+		event.setName("view_item");
+		event.getDetails().put("source_category", category);
+		event.getDetails().put("item_name", item.getName());
+		event.getDetails().put("item_path", item.getPath());
+		analytics.record(session.getAnalyticsId(), event);
+
 		VerticalLayout layout = new DialogLayout();
 
 		HorizontalLayout titleRow = new HorizontalLayout();
@@ -36,7 +47,6 @@ public class ItemDialog extends Composite<StorefrontDialog> {
 		titleRow.setVerticalComponentAlignment(Alignment.BASELINE, button);
 		titleRow.add(button);
 		layout.add(titleRow);
-		//layout.setFlexGrow(1, titleRow);
 
 		Div description = Described.render(item.getDescription());
 		description.setSizeFull();
@@ -46,7 +56,6 @@ public class ItemDialog extends Composite<StorefrontDialog> {
 		description.getStyle().set("border-color", "var(--lumo-contrast-10pct)");
 		description.getStyle().set("border-width", "2px 0");
 		layout.add(description);
-		//layout.setFlexGrow(7, description);
 
 		Div buttons = new Div();
 		buttons.setSizeFull();
@@ -56,10 +65,10 @@ public class ItemDialog extends Composite<StorefrontDialog> {
 		purchaseRow.getStyle().set("flex-direction", "row");
 		purchaseRow.getStyle().set("flex-wrap", "wrap-reverse");
 
-		Button addToCart = new SecondaryContrastButton();
+		Button addToCart = new SecondaryContrastButton(); // TODO record user adds to card. Ensure this is recorded differently depending on the presence of one click
 		addToCart.setText("Add to cart");
 
-		Button purchase = new ContrastButton();
+		Button purchase = new ContrastButton(); // TODO record user buys with one click
 		purchase.setText("Buy with one click");
 
 		purchaseRow.add(addToCart, purchase);
@@ -77,7 +86,7 @@ public class ItemDialog extends Composite<StorefrontDialog> {
 
 		buttons.add(orRow);
 
-		TextField giftUsername = new TextField();
+		TextField giftUsername = new TextField(); // TODO record user focuses on gift field
 		giftUsername.setWidth("100%");
 		giftUsername.setMaxLength(16);
 		giftUsername.setPlaceholder("Recipient's Minecraft username");
@@ -86,7 +95,7 @@ public class ItemDialog extends Composite<StorefrontDialog> {
 		buyAsAGift.getStyle().set("font-weight", "600");
 		buyAsAGift.getStyle().set("margin-top", "0.25em");
 		gifttt.add(buyAsAGift, new Icon(VaadinIcons.GIFT));
-		Button go = new Button(gifttt);
+		Button go = new Button(gifttt); // TODO record user buys gift
 		go.getElement().getThemeList().add("small");
 		go.getElement().getThemeList().add("contrast");
 		go.getElement().getThemeList().add("tertiary");
@@ -95,7 +104,6 @@ public class ItemDialog extends Composite<StorefrontDialog> {
 		buttons.add(giftUsername);
 
 		layout.add(buttons);
-		//layout.setFlexGrow(3, buttons);
 
 		getContent().add(layout);
 	}

@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Named extends Bean {
 
-	private String name = "Storefront";
+	private String name;
 
 	public String getName() {
 		return name;
