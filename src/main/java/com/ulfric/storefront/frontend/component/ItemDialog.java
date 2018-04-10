@@ -27,6 +27,7 @@ public class ItemDialog extends Composite<StorefrontDialog> {
 
 	public ItemDialog(String category, Item item, Session session, SessionRepository sessions, AnalyticsService analytics) {
 		Event event = new Event();
+		event.setInteraction(true);
 		event.setName("view_item");
 		event.getDetails().put("source_category", category);
 		event.getDetails().put("item_name", item.getName());
