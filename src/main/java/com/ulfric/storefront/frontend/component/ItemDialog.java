@@ -19,7 +19,6 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcons;
-import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
@@ -44,7 +43,7 @@ public class ItemDialog extends Composite<StorefrontDialog> {
 		Button button = new TertiaryContrastButton();
 		button.setIcon(new Icon(VaadinIcons.CLOSE)); // TODO properly align
 		button.getElement().getThemeList().add("small");
-		titleRow.setVerticalComponentAlignment(Alignment.BASELINE, button);
+		button.getStyle().set("padding-top", "1.25em");
 		titleRow.add(button);
 		layout.add(titleRow);
 

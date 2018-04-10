@@ -15,7 +15,7 @@ public class SessionRepositoryImpl implements SessionRepository { // TODO implem
 	@Override
 	public Session getById(String sessionId) {
 		// TODO Auto-generated method stub
-		return null;
+		return new Session();
 	}
 
 	@Override
