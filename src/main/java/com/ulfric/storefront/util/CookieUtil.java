@@ -12,7 +12,17 @@ public class CookieUtil {
 	public static Optional<String> getCookieValue(String name) {
 		Objects.requireNonNull(name, "name");
 
-		for (Cookie cookie : VaadinRequest.getCurrent().getCookies()) {
+		VaadinRequest request = VaadinRequest.getCurrent();
+		if (request == null) {
+			return Optional.empty();
+		}
+
+		Cookie[] cookies = request.getCookies();
+		if (cookies == null) {
+			return Optional.empty();
+		}
+
+		for (Cookie cookie : cookies) {
 			if (cookie.getName() == null) {
 				continue;
 			}
